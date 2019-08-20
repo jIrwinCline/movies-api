@@ -36,6 +36,7 @@ group :development, :test do
   gem 'factory_bot'
   gem 'csv'
   gem 'dotenv'
+  gem 'bcrypt'
 end
 
 group :development do
