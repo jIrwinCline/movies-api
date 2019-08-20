@@ -35,6 +35,7 @@ group :development, :test do
   gem 'faker'
   gem 'factory_bot'
   gem 'csv'
+  gem 'dotenv'
 end
 
 group :development do
