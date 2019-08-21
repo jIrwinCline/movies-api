@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   get "/rating", to: 'movies#rating'
   get "/popular", to: 'movies#popular'
   get '/letter/:letter', to:'movies#letter'
+  get '/year_released/:year', to: 'movies#year_released'
+  get '/title/:title', to: 'movies#title'
   resources :movies
 
 

@@ -65,6 +65,26 @@ class MoviesController < ApplicationController
     end
   end
 
+  def year_released
+    if authorize_token
+      year = params[:year]
+      @movies = Movie.year_released(year)
+      json_response(@movies)
+    else
+      json_response({:message => "Use a token for access"})
+    end
+  end
+
+  def title
+    if authorize_token
+      title = params[:title]
+      @movies = Movie.partial_title(title)
+      json_response(@movies)
+    else
+      json_response({:message => "Use a token for access"})
+    end
+  end
+
 
 
   def authorize_token
