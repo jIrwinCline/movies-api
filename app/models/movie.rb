@@ -11,4 +11,7 @@ class Movie < ApplicationRecord
 
   scope :random, -> {order("RANDOM()").limit(1)}
   scope :longest, ->{where("runtime IS NOT NULL").order("runtime desc").limit(10)}
+  scope :rating, ->{where("vote_average IS NOT NULL").order("vote_average desc").limit(10)}
+  scope :high_votes, ->{where("vote_count IS NOT NULL").order("vote_count desc").limit(10)}
+  scope :best_and_most_rated, -> {where("vote_count IS NOT NULL").where("vote_average IS NOT NULL").order("vote_count desc").limit(100).order("vote_average desc")}
 end
