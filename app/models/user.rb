@@ -24,7 +24,7 @@ class User < ApplicationRecord
      if user && user.password_hash == BCrypt::Engine.hash_secret(password, user.password_salt)
        # send back a token
        token_salt = BCrypt::Engine.generate_salt
-       token_hash = BCrypt::Engine.hash_secret(Time.new.to_s ,token_salt)
+       token_hash = BCrypt::Engine.hash_secret(Time.new.to_s ,token_salt).delete!("/.$\\")
        token = Token.new(:token_salt => token_salt, :token_hash => token_hash)
        token.save!
        {:token => token_hash}

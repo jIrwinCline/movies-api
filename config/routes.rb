@@ -4,6 +4,10 @@ Rails.application.routes.draw do
   root to: "sessions#login"
   post "/login", to: 'sessions#create'
   get "/random", to: 'movies#random'
+  get "/longest", to: 'movies#longest'
+  get "/rating", to: 'movies#rating'
+  get "/popular", to: 'movies#popular'
+  get '/letter/:letter', to:'movies#letter'
   resources :movies
 
 

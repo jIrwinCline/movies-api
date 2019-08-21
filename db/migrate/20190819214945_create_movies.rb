@@ -20,8 +20,8 @@ class CreateMovies < ActiveRecord::Migration[5.2]
       t.string :tagline
       t.string :title
       t.boolean :video
-      t.string:vote_average
+      t.string :vote_average
       t.bigint :vote_count
-    endmovie
+    end
   end
 end
