@@ -21,7 +21,7 @@ class Movie < ApplicationRecord
 
   def self.partial_title(title)
     title = title.downcase
-    self.where "lower(title) LIKE '%#{title}%'"
+    self.where("lower(title) LIKE '%#{title}%'").order("popularity desc")
   end
 
   def self.year_released(year)
