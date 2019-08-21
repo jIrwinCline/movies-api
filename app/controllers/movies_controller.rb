@@ -2,7 +2,7 @@ class MoviesController < ApplicationController
 
   def index
     if authorize_token
-      @movies = Movie.all.order("title ASC").offset(0).limit(1000)
+      @movies = Movie.all.order("title ASC").limit(1000)
       json_response(@movies)
     else
       json_response({:message => "Use a token for access"})
