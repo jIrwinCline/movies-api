@@ -1,12 +1,23 @@
 class Movie < ApplicationRecord
 
-  after_initialize :add_url
+  after_initialize :add_url, :format_genre
 
   def add_url
     if !self.url
       self.url = "http://localhost:3000/movies/#{self.id}"
       self.save
     end
+  end
+
+  def format_genre
+    genres = self.genres
+    genres.delete!("[]{}',:0123456789\"")
+    genres = genres.split(" ")
+    genres.delete("id")
+    genres.delete("name")
+
+    genres = genres.join(",")
+    self.genres = genres
   end
 
   scope :random, -> {order("RANDOM()").limit(1)}
