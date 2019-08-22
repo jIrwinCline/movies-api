@@ -21,21 +21,10 @@ class Movie < ApplicationRecord
   end
 
   def format_production
-    company = self.production_companies
-    company = company.split(" ")
-    pattern1 = /\[\{\'name\'\:/
-    pattern2 = /'id':/
-    i = 0
-    production_co = []
-    company.length.times do |i|
-      if (!pattern1.match(company[i]) && !pattern2.match(company[i]))
-        production_co.push(company[i])
-      end
-    end
-    production_co.pop
-    production_co = production_co.join(" ")
-    self.production_companies = production_co
-
+    binding.pry
+    # eval converts successfully into an object, but because it's a string in the object, rails forgets that it has properties like an object and becomes a string again
+    # company = self.production_companies
+    # self.production_companies = eval(company)
   end
 
   scope :random, -> {order("RANDOM()").limit(1)}
