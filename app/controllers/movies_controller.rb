@@ -85,6 +85,10 @@ class MoviesController < ApplicationController
     end
   end
 
+  def test
+    render :test
+  end
+
 
 
   def authorize_token

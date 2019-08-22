@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   root to: "sessions#login"
   post "/login", to: 'sessions#create'
+  get '/register', to: 'users#new'
+  post 'register', to: 'users#create'
   get "/random", to: 'movies#random'
   get "/longest", to: 'movies#longest'
   get "/rating", to: 'movies#rating'
