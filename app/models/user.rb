@@ -28,9 +28,9 @@ class User < ApplicationRecord
        # token_hash = BCrypt::Engine.hash_secret(Time.new.to_s ,token_salt).delete!("/.$\\")
        # token = Token.new(:token_salt => token_salt, :token_hash => token_hash)
        # token.save!
-       {:token => token.token_hash}
+       {:message => "Successful login. Use Authorization in headers for access to API.", :authorization => token.token_hash, :url_movies => "http://localhost:3000/movies"}
      else
-       {:message => "Sorry! Token not found!"}
+       {:message => "Sorry! Credentials invalid."}
      end
    end
 

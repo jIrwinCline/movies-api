@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 
   def create
 
-    @user = User.new(:username => params[:username], :password => params[:password])
+    @user = User.new(:username => request.headers["HTTP_USERNAME"], :password => request.headers["HTTP_PASSWORD"])
     if @user.save!
       token = Token.generate
       json_response({:message=>"User created", :username=>@user.username, :password=>@user.password, :token=>token.token_hash}, 201)
@@ -12,7 +12,7 @@ class UsersController < ApplicationController
   end
 
   def new
-    json_response({:message => "Send a post request to /register to sign up!", :username=>"", :password=>""})
+    json_response({:message => "Send a post request to '/register' to sign up! Enter username and password in Headers." , :username=>"", :password=>""})
   end
 
 end
