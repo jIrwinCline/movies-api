@@ -1,6 +1,6 @@
 class Movie < ApplicationRecord
 
-  after_initialize :add_url, :format_genre
+  after_initialize :add_url, :format_genre, :format_production
 
   def add_url
     if !self.url
@@ -18,6 +18,24 @@ class Movie < ApplicationRecord
 
     genres = genres.join(",")
     self.genres = genres
+  end
+
+  def format_production
+    company = self.production_companies
+    company = company.split(" ")
+    pattern1 = /\[\{\'name\'\:/
+    pattern2 = /'id':/
+    i = 0
+    production_co = []
+    company.length.times do |i|
+      if (!pattern1.match(company[i]) && !pattern2.match(company[i]))
+        production_co.push(company[i])
+      end
+    end
+    production_co.pop
+    production_co = production_co.join(" ")
+    self.production_companies = production_co
+
   end
 
   scope :random, -> {order("RANDOM()").limit(1)}
