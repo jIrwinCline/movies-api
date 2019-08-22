@@ -86,13 +86,14 @@ class MoviesController < ApplicationController
   end
 
   def test
-    render :test
+    binding.pry
+
   end
 
 
 
   def authorize_token
-    if params[:token] && Token.find_by_token_hash(params[:token])
+    if request.headers["HTTP_AUTHORIZATION"] && Token.find_by_token_hash(request.headers["HTTP_AUTHORIZATION"])
       true
     else
       false

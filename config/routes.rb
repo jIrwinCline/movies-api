@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   get '/letter/:letter', to:'movies#letter'
   get '/year_released/:year', to: 'movies#year_released'
   get '/title/:title', to: 'movies#title'
+  get '/test', to: "movies#test"
   resources :movies
 
 
